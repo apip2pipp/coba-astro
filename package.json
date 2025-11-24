@@ -9,7 +9,11 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.14.7"
+    "@astrojs/react": "^4.4.2",
+    "astro": "^5.14.7",
+    "framer-motion": "^12.23.24",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
   },
   "devDependencies": {
     "@astrojs/tailwind": "^6.0.2",
