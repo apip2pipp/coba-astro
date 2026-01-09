@@ -1,0 +1,282 @@
+---
+// Splash Screen Component
+---
+
+<div id="splash-screen" class="splash-screen">
+  <div class="splash-content">
+    <!-- Logo with animation -->
+    <div class="logo-container">
+      <div class="logo-circle"></div>
+      <h1 class="logo-text">Kieee</h1>
+    </div>
+    
+    <!-- Tagline with typing effect -->
+    <p class="tagline">
+      <span class="typing-text"></span>
+      <span class="cursor">|</span>
+    </p>
+    
+    <!-- Loading bar -->
+    <div class="loading-bar">
+      <div class="loading-progress"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const splash = document.getElementById('splash-screen');
+    const typingText = document.querySelector('.typing-text');
+    const text = "Web Developer & Designer";
+    let index = 0;
+
+    // Typing animation
+    const typeWriter = () => {
+      if (index < text.length && typingText) {
+        typingText.textContent += text.charAt(index);
+        index++;
+        setTimeout(typeWriter, 80);
+      }
+    };
+
+    // Start typing after a short delay
+    setTimeout(typeWriter, 600);
+
+    // Hide splash screen after animation
+    setTimeout(() => {
+      if (splash) {
+        splash.classList.add('slide-up-exit');
+        setTimeout(() => {
+          splash.style.display = 'none';
+          document.body.style.overflow = 'auto';
+        }, 600);
+      }
+    }, 3200);
+
+    // Prevent scrolling during splash
+    document.body.style.overflow = 'hidden';
+  });
+</script>
+
+<style>
+  .splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: transform 0.6s ease-in-out;
+    animation: gradientShift 3s ease infinite;
+  }
+
+  @keyframes gradientShift {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  .splash-screen.slide-up-exit {
+    transform: translateY(-100%);
+    pointer-events: none;
+  }
+
+  .splash-content {
+    text-align: center;
+    animation: slideUp 0.8s ease-out;
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .logo-container {
+    position: relative;
+    margin-bottom: 2rem;
+  }
+
+  .logo-circle {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 1.5rem;
+    border: 3px solid #4ade80;
+    border-radius: 50%;
+    position: relative;
+    animation: pulse 2s ease-in-out infinite, rotate 3s linear infinite;
+    background: linear-gradient(135deg, rgba(74, 222, 128, 0.1) 0%, rgba(34, 197, 94, 0.2) 100%);
+    box-shadow: 0 0 30px rgba(74, 222, 128, 0.3), inset 0 0 20px rgba(74, 222, 128, 0.1);
+  }
+
+  .logo-circle::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    background: #4ade80;
+    border-radius: 50%;
+    animation: innerPulse 2s ease-in-out infinite;
+    box-shadow: 0 0 20px rgba(74, 222, 128, 0.6);
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.05);
+      opacity: 0.8;
+    }
+  }
+
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes innerPulse {
+    0%, 100% {
+      transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+      transform: translate(-50%, -50%) scale(1.2);
+    }
+  }
+
+  .logo-text {
+    font-size: 3.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #4ade80 0%, #22c55e 50%, #16a34a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 0.05em;
+    animation: glow 2s ease-in-out infinite;
+    text-shadow: 0 0 30px rgba(74, 222, 128, 0.3);
+  }
+
+  @keyframes glow {
+    0%, 100% {
+      filter: brightness(1);
+    }
+    50% {
+      filter: brightness(1.2);
+    }
+  }
+
+  .tagline {
+    font-size: 1.125rem;
+    color: #e2e8f0;
+    margin-bottom: 2.5rem;
+    height: 1.75rem;
+    font-weight: 400;
+    letter-spacing: 0.025em;
+  }
+
+  .typing-text {
+    color: #cbd5e1;
+  }
+
+  .cursor {
+    color: #4ade80;
+    animation: blink 0.7s infinite;
+    font-weight: 300;
+  }
+
+  @keyframes blink {
+    0%, 50% {
+      opacity: 1;
+    }
+    51%, 100% {
+      opacity: 0;
+    }
+  }
+
+  .loading-bar {
+    width: 250px;
+    height: 3px;
+    background: rgba(74, 222, 128, 0.2);
+    margin: 0 auto;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(74, 222, 128, 0.2);
+  }
+
+  .loading-progress {
+    height: 100%;
+    background: linear-gradient(90deg, #4ade80 0%, #22c55e 50%, #4ade80 100%);
+    border-radius: 10px;
+    animation: loading 2.5s ease-in-out forwards;
+    box-shadow: 0 0 15px rgba(74, 222, 128, 0.6);
+  }
+
+  @keyframes loading {
+    0% {
+      width: 0%;
+    }
+    100% {
+      width: 100%;
+    }
+  }
+
+  /* Light theme support */
+  :root[data-theme='light'] .splash-screen {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #f1f5f9 100%);
+  }
+
+  :root[data-theme='light'] .logo-text {
+    background: linear-gradient(135deg, #16a34a 0%, #15803d 50%, #14532d 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  :root[data-theme='light'] .tagline {
+    color: #475569;
+  }
+
+  :root[data-theme='light'] .typing-text {
+    color: #64748b;
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .logo-circle {
+      width: 80px;
+      height: 80px;
+    }
+
+    .logo-text {
+      font-size: 2.5rem;
+    }
+
+    .tagline {
+      font-size: 1rem;
+    }
+
+    .loading-bar {
+      width: 200px;
+    }
+  }
+</style>

@@ -1,15 +1,92 @@
+---
+import SplashScreen from '../components/SplashScreen.astro';
+---
+
 <!doctype html>
 <html lang="id" data-theme="dark">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+		<!-- Favicon - Multiple Formats -->
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+		
 		<meta name="generator" content={Astro.generator} />
-		<title>Portofolio - Afif</title>
+		<title>Zakie Portofolio  UI Designer & Data Science</title>
 		<meta name="description" content="Portofolio web developer Afif - showcasing projects, skills, and achievements" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+		
+		<!-- Smooth Scroll Style -->
+		<style is:global>
+			html {
+				scroll-behavior: smooth;
+			}
+		</style>
+		
+		<!-- Lenis Smooth Scroll Library -->
+		<script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+		
+		<script is:inline>
+			// Initialize Lenis Smooth Scroll
+			window.addEventListener('DOMContentLoaded', function() {
+				const lenis = new Lenis({
+					duration: 1.2,        // Durasi scroll (lebih tinggi = lebih smooth)
+					easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Easing function
+					smooth: true,         // Enable smooth scroll
+					smoothTouch: false,   // Disable di mobile (biar natural)
+				});
+
+				// Animation frame untuk smooth scroll
+				function raf(time) {
+					lenis.raf(time);
+					requestAnimationFrame(raf);
+				}
+				requestAnimationFrame(raf);
+			});
+		</script>
+		
+		<!-- Scroll Reveal Animation Script -->
+		<script is:inline>
+			// Initialize scroll reveal animation
+			window.addEventListener('DOMContentLoaded', function() {
+				setTimeout(function() {
+					const revealElements = document.querySelectorAll('.reveal-element');
+					
+					console.log('Reveal elements found:', revealElements.length);
+
+					if (!revealElements.length) return;
+
+					const observerOptions = {
+						root: null,
+						rootMargin: '0px',
+						threshold: 0.15
+					};
+
+					const observer = new IntersectionObserver(function(entries) {
+						entries.forEach(function(entry) {
+							if (entry.isIntersecting) {
+								const delay = entry.target.getAttribute('data-delay') || '0';
+								console.log('Element visible, applying animation with delay:', delay);
+								setTimeout(function() {
+									entry.target.classList.add('revealed');
+								}, parseInt(delay));
+								observer.unobserve(entry.target);
+							}
+						});
+					}, observerOptions);
+
+					revealElements.forEach(function(element) {
+						observer.observe(element);
+					});
+				}, 100);
+			});
+		</script>
+		
 		<script>
 			(function () {
 				const STORAGE_KEY = 'site-theme';
@@ -27,6 +104,7 @@
 		</script>
 	</head>
 	<body class="bg-white text-gray-900 dark:bg-secondary-950 dark:text-gray-100 font-sans antialiased transition-colors duration-300">
+		<SplashScreen />
 		<slot />
 	</body>
 </html>

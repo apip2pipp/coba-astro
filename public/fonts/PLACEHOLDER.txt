@@ -1,0 +1,18 @@
+/* 
+ * CONTOH FILE FONT - PLACEHOLDER
+ * ================================
+ * 
+ * File ini adalah placeholder. Ganti dengan file font asli Anda!
+ * 
+ * Download font Poppins dari:
+ * https://fonts.google.com/specimen/Poppins
+ * 
+ * Yang dibutuhkan:
+ * 1. Poppins-Regular.woff2
+ * 2. Poppins-SemiBold.woff2  
+ * 3. Poppins-Bold.woff2
+ * 
+ * Atau gunakan font converter online untuk convert .ttf ke .woff2:
+ * - https://cloudconvert.com/ttf-to-woff2
+ * - https://www.fontsquirrel.com/tools/webfont-generator
+ */

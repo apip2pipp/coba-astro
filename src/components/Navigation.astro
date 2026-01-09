@@ -2,13 +2,18 @@
 // Navigation component
 ---
 
-<nav id="main-nav" data-theme="dark" class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md transition-colors duration-300">
+<nav id="main-nav" data-theme="dark" class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md transition-all duration-500 ease-in-out">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center h-16 gap-4">
       <!-- Logo -->
       <div class="flex-shrink-0">
-        <a href="#home" class="nav-logo text-2xl font-bold transition-colors duration-300">
-          Portofolio
+        <a href="#home" class="nav-logo-wrapper flex items-center gap-3 transition-colors duration-300">
+          <!-- Animated Circle Logo -->
+          <div class="nav-logo-circle">
+            <div class="nav-logo-inner"></div>
+          </div>
+          <!-- Text Logo -->
+          <span class="nav-logo text-2xl font-bold">Kieee</span>
         </a>
       </div>
 
@@ -95,7 +100,7 @@
     const mobileToggle = document.getElementById('theme-toggle-mobile');
     const THEME_KEY = 'site-theme';
     const root = document.documentElement;
-    const applyTheme = (theme) => {
+    const applyTheme = (theme: string) => {
       const resolved = theme === 'light' ? 'light' : 'dark';
       root.classList.toggle('dark', resolved === 'dark');
       root.dataset.theme = resolved;
@@ -130,20 +135,73 @@
       });
     }
 
-    // Smooth scrolling for navigation links
+    // Smooth scrolling for navigation links with custom duration
+    const smoothScrollTo = (target: Element, duration = 1000) => {
+      const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+      const startPosition = window.pageYOffset;
+      const distance = targetPosition - startPosition;
+      let startTime: number | null = null;
+
+      const animation = (currentTime: number) => {
+        if (startTime === null) startTime = currentTime;
+        const timeElapsed = currentTime - startTime;
+        const run = ease(timeElapsed, startPosition, distance, duration);
+        window.scrollTo(0, run);
+        if (timeElapsed < duration) requestAnimationFrame(animation);
+      };
+
+      // Easing function for smooth animation
+      const ease = (t: number, b: number, c: number, d: number) => {
+        t /= d / 2;
+        if (t < 1) return c / 2 * t * t + b;
+        t--;
+        return -c / 2 * (t * (t - 2) - 1) + b;
+      };
+
+      requestAnimationFrame(animation);
+    };
+
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
+      anchor.addEventListener('click', function (e: Event) {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        const href = (e.currentTarget as HTMLAnchorElement).getAttribute('href');
+        const target = href ? document.querySelector(href) : null;
         if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
+          smoothScrollTo(target, 1000); // 1000ms = 1 second duration
           // Close mobile menu if open
           mobileMenu?.classList.add('hidden');
         }
       });
+    });
+
+    // Scroll-based navigation hide/show with delay
+    let lastScrollTop = 0;
+    let scrollTimeout: number | undefined;
+    const scrollDelay = 150; // Delay in milliseconds (0.15 seconds)
+    
+    window.addEventListener('scroll', function() {
+      clearTimeout(scrollTimeout);
+      
+      scrollTimeout = window.setTimeout(function() {
+        const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        // Only apply animation if scrolled past 100px
+        if (currentScrollTop > 100) {
+          if (currentScrollTop > lastScrollTop) {
+            // Scrolling down
+            if (nav) nav.style.transform = 'translateY(-100%)';
+          } else {
+            // Scrolling up
+            if (nav) nav.style.transform = 'translateY(0)';
+          }
+        } else {
+          // At the top, always show
+          if (nav) // At the top, always show
+          nav.style.transform = 'translateY(0)';
+        }
+        
+        lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
+      }, scrollDelay);
     });
   });
 </script>
@@ -181,6 +239,80 @@
 
   #main-nav .nav-logo {
     color: var(--nav-logo);
+  }
+
+  /* Animated Circle Logo */
+  .nav-logo-wrapper {
+    text-decoration: none;
+  }
+
+  .nav-logo-circle {
+    position: relative;
+    width: 36px;
+    height: 36px;
+    border: 2px solid var(--nav-logo);
+    border-radius: 50%;
+    animation: navCircleRotate 8s linear infinite;
+    transition: all 0.3s ease;
+  }
+
+  .nav-logo-circle::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    bottom: 2px;
+    border-radius: 50%;
+    background: var(--nav-logo);
+    opacity: 0.1;
+  }
+
+  .nav-logo-inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 14px;
+    height: 14px;
+    background: var(--nav-logo);
+    border-radius: 50%;
+    animation: navInnerPulse 2s ease-in-out infinite;
+    box-shadow: 0 0 8px var(--nav-logo);
+  }
+
+  @keyframes navCircleRotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes navInnerPulse {
+    0%, 100% {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: translate(-50%, -50%) scale(1.2);
+      opacity: 0.8;
+    }
+  }
+
+  .nav-logo-wrapper:hover .nav-logo-circle {
+    transform: scale(1.1);
+    border-color: var(--nav-link-hover);
+  }
+
+  .nav-logo-wrapper:hover .nav-logo-inner {
+    background: var(--nav-link-hover);
+    box-shadow: 0 0 12px var(--nav-link-hover);
+  }
+
+  .nav-logo-wrapper:hover .nav-logo {
+    color: var(--nav-link-hover);
   }
 
   #main-nav .nav-link {

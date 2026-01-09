@@ -5,69 +5,68 @@ import AnimatedProfile from './react/AnimatedProfile';
 
 <section id="about" class="py-20 bg-white text-gray-900 dark:bg-secondary-950 dark:text-gray-100 transition-colors duration-300">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-16">
-      <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">Tentang Saya</h2>
+    <div class="text-center mb-16 reveal-element" data-delay="0">
+      <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">About Me</h2>
       <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-        Seorang developer dan UI design yang mencoba transisi ke bidang Data Science
+        A developer and UI designer trying to transition into Data Science, but I'm open to any project, provided it matches my skill set. 
       </p>
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
       <!-- Profile Image -->
-      <div class="order-2 lg:order-1">
+      <div class="order-2 lg:order-1 reveal-element" data-delay="100">
         <AnimatedProfile client:load />
       </div>
 
       <!-- Content -->
       <div class="order-1 lg:order-2">
         <div class="space-y-6">
-          <div>
-            <h3 class="text-2xl font-semibold text-gray-900 dark:text-white mb-3">Halo, Saya Afif!</h3>
+          <div class="reveal-element" data-delay="200">
+            <h3 class="text-2xl font-semibold text-gray-900 dark:text-white mb-3">Halo, Zakiee Hereeee!</h3>
             <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
-              Saya adalah seorang Full Stack Developer dengan pengalaman dalam mengembangkan aplikasi web modern menggunakan teknologi terdepan. 
-              Saya memiliki passion yang besar dalam menciptakan solusi digital yang tidak hanya fungsional, tetapi juga memberikan pengalaman pengguna yang luar biasa.
+              I am a Full Stack Developer with experience in developing modern web applications using cutting-edge technology. Currently, I am focusing on transitioning into the world of Data Science, with a passion for creating data-driven solutions that are not only functional but also capable of providing deep insights and an optimized user experience.
             </p>
           </div>
 
-          <div>
-            <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">Pendidikan & Pengalaman</h4>
+          <div class="reveal-element" data-delay="300">
+            <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">Education & Experience</h4>
             <div class="space-y-3">
               <div class="flex items-start space-x-3">
                 <div class="w-2 h-2 bg-primary-500 dark:bg-primary-400 rounded-full mt-2 flex-shrink-0"></div>
                 <p class="text-gray-600 dark:text-gray-300">
-                  <span class="font-medium">Bachelor's Degree</span> - Teknik Informatika, Universitas Terkemuka
+                  <span class="font-medium">Undergraduate</span> - Business Information System, Malang State Polytechnic
                 </p>
               </div>
               <div class="flex items-start space-x-3">
                 <div class="w-2 h-2 bg-primary-500 dark:bg-primary-400 rounded-full mt-2 flex-shrink-0"></div>
                 <p class="text-gray-600 dark:text-gray-300">
-                  <span class="font-medium">3+ Tahun</span> pengalaman dalam pengembangan web dan mobile
+                  <span class="font-medium">2+ Years</span> I have experience in web and mobile development, and i am currently focusing on transitioning to Data Science. 
                 </p>
               </div>
               <div class="flex items-start space-x-3">
                 <div class="w-2 h-2 bg-primary-500 dark:bg-primary-400 rounded-full mt-2 flex-shrink-0"></div>
                 <p class="text-gray-600 dark:text-gray-300">
-                  <span class="font-medium">Freelancer</span> dengan berbagai proyek sukses untuk klien internasional
+                  <span class="font-medium">Open Freelancer</span> by collaborating with friends alone
                 </p>
               </div>
             </div>
           </div>
 
-          <div>
-            <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">Keahlian Utama</h4>
+          <div class="reveal-element" data-delay="400">
+            <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">Key Competencies</h4>
             <div class="flex flex-wrap gap-2">
               <span class="px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-sm font-medium dark:bg-primary-900/40 dark:text-primary-100">Frontend Development</span>
               <span class="px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-sm font-medium dark:bg-primary-900/40 dark:text-primary-100">Backend Development</span>
               <span class="px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-sm font-medium dark:bg-primary-900/40 dark:text-primary-100">Mobile Development</span>
-              <span class="px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-sm font-medium dark:bg-primary-900/40 dark:text-primary-100">UI/UX Design</span>
-              <span class="px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-sm font-medium dark:bg-primary-900/40 dark:text-primary-100">Database Design</span>
-              <span class="px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-sm font-medium dark:bg-primary-900/40 dark:text-primary-100">Cloud Computing</span>
+              <span class="px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-sm font-medium dark:bg-primary-900/40 dark:text-primary-100">UI Design</span>
+              <span class="px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-sm font-medium dark:bg-primary-900/40 dark:text-primary-100">Data Science</span>
+              <span class="px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-sm font-medium dark:bg-primary-900/40 dark:text-primary-100">Machine Learning</span>
             </div>
           </div>
 
-          <div class="pt-4">
+          <div class="pt-4 reveal-element" data-delay="500">
             <a href="#contact" class="inline-flex items-center px-6 py-3 bg-primary-600 text-white font-medium rounded-lg hover:bg-primary-500 transition-colors shadow-lg shadow-primary-500/30 dark:bg-primary-500 dark:text-secondary-950 dark:hover:bg-primary-400 dark:shadow-primary-900/30">
-              Hubungi Saya
+              Contact Me
               <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
@@ -78,3 +77,18 @@ import AnimatedProfile from './react/AnimatedProfile';
     </div>
   </div>
 </section>
+
+<style>
+  /* Scroll Reveal Animation */
+  :global(.reveal-element) {
+    opacity: 0 !important;
+    transform: translateY(60px) !important;
+    transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+  }
+
+  :global(.reveal-element.revealed) {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+</style>

@@ -4,9 +4,9 @@ import ShowcaseWall from './react/ShowcaseWall';
 const projects = [
   {
     id: 1,
-    title: "E-Commerce Platform",
+    title: "Accreditation System For JTI",
     description: "Platform e-commerce modern dengan fitur lengkap termasuk payment gateway, inventory management, dan analytics dashboard.",
-    image: "/api/placeholder/400/300",
+    image: "/projects/Accreditation.png",
     technologies: ["React", "Node.js", "MongoDB", "Stripe API"],
     github: "https://github.com",
     demo: "https://demo.com",
@@ -14,9 +14,9 @@ const projects = [
   },
   {
     id: 2,
-    title: "Task Management App",
+    title: "ClcokIN - Employee Attendance Application",
     description: "Aplikasi manajemen tugas dengan real-time collaboration, drag-and-drop interface, dan notification system.",
-    image: "/api/placeholder/400/300",
+    image: "/projects/ClockIN.png",
     technologies: ["Vue.js", "Express.js", "Socket.io", "PostgreSQL"],
     github: "https://github.com",
     demo: "https://demo.com",
@@ -26,7 +26,7 @@ const projects = [
     id: 3,
     title: "Weather Dashboard",
     description: "Dashboard cuaca interaktif dengan prediksi akurat, maps integration, dan data historis.",
-    image: "/api/placeholder/400/300",
+    image: "/projects/SakuRapi.png",
     technologies: ["Next.js", "TypeScript", "Chart.js", "OpenWeather API"],
     github: "https://github.com",
     demo: "https://demo.com",
@@ -36,7 +36,7 @@ const projects = [
     id: 4,
     title: "Social Media Analytics",
     description: "Tool analisis media sosial dengan sentiment analysis, engagement metrics, dan reporting otomatis.",
-    image: "/api/placeholder/400/300",
+    image: "/projects/Accreditation.png",
     technologies: ["Python", "Django", "TensorFlow", "Redis"],
     github: "https://github.com",
     demo: "https://demo.com",
@@ -46,7 +46,7 @@ const projects = [
     id: 5,
     title: "Mobile Banking App",
     description: "Aplikasi mobile banking dengan fitur transfer, pembayaran, dan investasi dengan keamanan tinggi.",
-    image: "/api/placeholder/400/300",
+    image: "/projects/SakuRapi.png",
     technologies: ["React Native", "Firebase", "Biometric Auth", "REST API"],
     github: "https://github.com",
     demo: "https://demo.com",
@@ -56,7 +56,7 @@ const projects = [
     id: 6,
     title: "Learning Management System",
     description: "Platform pembelajaran online dengan video streaming, quiz interaktif, dan progress tracking.",
-    image: "/api/placeholder/400/300",
+    image: "/projects/ClockIN.png",
     technologies: ["Angular", "NestJS", "MySQL", "AWS S3"],
     github: "https://github.com",
     demo: "https://demo.com",
@@ -68,23 +68,21 @@ const projects = [
 <section id="projects" class="py-20 bg-gray-50 text-gray-900 dark:bg-secondary-900 dark:text-gray-100 transition-colors duration-300">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-16">
-      <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">Proyek Saya</h2>
+      <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">My Project</h2>
       <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-        Koleksi proyek-proyek yang telah saya kembangkan, mulai dari aplikasi web hingga mobile app
+        A collection of projects I have developed, ranging from data mining projects to web and mobile apps.
       </p>
     </div>
 
     <!-- Featured Projects -->
     <div class="mb-16 relative">
       <ShowcaseWall client:load />
-      <h3 class="text-2xl font-semibold text-gray-900 dark:text-white mb-8 text-center">Proyek Unggulan</h3>
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <h3 class="text-2xl font-semibold text-gray-900 dark:text-white mb-8 text-center">Featured Project</h3>
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {projects.filter(project => project.featured).map((project) => (
           <div class="bg-white border border-gray-100 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 dark:bg-secondary-950/70 dark:border-secondary-800 dark:shadow-2xl dark:hover:shadow-primary-900/40">
-            <div class="h-48 bg-gradient-to-br from-primary-200 via-primary-400 to-secondary-300 dark:from-primary-500 dark:via-primary-700 dark:to-secondary-900 flex items-center justify-center">
-              <svg class="w-16 h-16 text-white opacity-90" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd" />
-              </svg>
+            <div class="h-48 bg-gradient-to-br from-primary-200 via-primary-400 to-secondary-300 dark:from-primary-500 dark:via-primary-700 dark:to-secondary-900 overflow-hidden">
+              <img src={project.image} alt={project.title} class="w-full h-full object-cover" />
             </div>
             <div class="p-6">
               <h4 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">{project.title}</h4>
@@ -116,14 +114,12 @@ const projects = [
 
     <!-- All Projects -->
     <div>
-      <h3 class="text-2xl font-semibold text-gray-900 dark:text-white mb-8 text-center">Semua Proyek</h3>
+      <h3 class="text-2xl font-semibold text-gray-900 dark:text-white mb-8 text-center">All Projects</h3>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {projects.map((project) => (
           <div class="bg-white border border-gray-100 rounded-lg shadow hover:shadow-lg transition-shadow duration-300 dark:bg-secondary-950/60 dark:border-secondary-800 dark:shadow-lg dark:hover:shadow-primary-900/40">
-            <div class="h-40 bg-gradient-to-br from-secondary-200 via-primary-400 to-primary-500 dark:from-secondary-900 dark:via-primary-700 dark:to-primary-500 flex items-center justify-center">
-              <svg class="w-12 h-12 text-white opacity-90" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd" />
-              </svg>
+            <div class="h-40 bg-gradient-to-br from-secondary-200 via-primary-400 to-primary-500 dark:from-secondary-900 dark:via-primary-700 dark:to-primary-500 overflow-hidden">
+              <img src={project.image} alt={project.title} class="w-full h-full object-cover" />
             </div>
             <div class="p-4">
               <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">{project.title}</h4>
